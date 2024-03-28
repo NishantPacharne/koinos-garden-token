@@ -1,0 +1,221 @@
+syntax = "proto3";
+
+package token;
+
+import "koinos/options.proto"; 
+
+message empty_message {}
+
+message str {
+   string value = 1;
+}
+
+message uint32 {
+   uint32 value = 1;
+}
+
+message uint64 {
+   uint64 value = 1 [jstype = JS_STRING];
+}
+
+message boole {
+   bool value = 1;
+}
+
+message info {
+   string name = 1;
+   string symbol = 2;
+   uint32 decimals = 3;
+}
+
+
+message uint64_object {
+   uint64 value = 1 [jstype = JS_STRING];
+}
+
+
+message address_object {
+   bytes value = 1 [(koinos.btype) = ADDRESS];
+}
+
+
+// @description Returns the token's name
+// @read-only true
+message name_arguments {}
+
+message name_result {
+   string value = 1;
+}
+
+// @description Returns the token's symbol
+// @read-only true
+message symbol_arguments {}
+
+message symbol_result {
+   string value = 1;
+}
+
+// @description Returns the token's decimals precision
+// @read-only true
+message decimals_arguments {}
+
+message decimals_result {
+   uint32 value = 1;
+}
+
+// @description Returns the token's total supply
+// @read-only true
+message total_supply_arguments {}
+
+message total_supply_result {
+   uint64 value = 1 [jstype = JS_STRING];
+}
+
+// @description Returns the token's max supply
+// @read-only true
+message max_supply_arguments {}
+
+message max_supply_result {
+   uint64 value = 1 [jstype = JS_STRING];
+}
+
+// @description Checks the balance at an address
+// @read-only true
+message balance_of_arguments {
+   bytes owner = 1 [(koinos.btype) = ADDRESS];
+}
+
+message balance_of_result {
+   uint64 value = 1 [jstype = JS_STRING];
+}
+
+// @description Transfers the token
+// @read-only false
+// @result empty_message
+message transfer_arguments {
+   bytes from = 1 [(koinos.btype) = ADDRESS];
+   bytes to = 2 [(koinos.btype) = ADDRESS];
+   uint64 value = 3 [jstype = JS_STRING];
+}
+
+// @description Mints the token
+// @read-only false
+// @result empty_message
+message mint_arguments {
+   bytes to = 1 [(koinos.btype) = ADDRESS];
+   uint64 value = 2 [jstype = JS_STRING];
+}
+
+
+// @description returns count of locked vaults of users
+// @read-only true
+message get_vault_count_arguments {
+   bytes address = 1 [(koinos.btype) = ADDRESS];
+}
+
+message get_vault_count_result {
+   uint64 value = 1 [jstype = JS_STRING];
+}
+
+
+// @description drops users rewards
+// @read-only false
+// @result empty_message
+message drop_rewards_arguments {
+  repeated bytes to = 1 [(koinos.btype) = ADDRESS];
+// bytes address = 2 [(koinos.btype) = ADDRESS];
+}
+
+// @description sets last drop time
+// @read-only false
+// @result empty_message
+message set_last_time_arguments {
+   uint64 value = 1 [jstype = JS_STRING];
+ // bytes address = 2 [(koinos.btype) = ADDRESS];
+ }
+
+// // @description fetches timestamp
+// // @read-only true
+// // @result uint64
+// message last_drop_time_arguments {
+// }
+
+
+// @description Burns the token
+// @read-only false
+// @result empty_message
+message burn_arguments {
+   bytes from = 1 [(koinos.btype) = ADDRESS];
+   uint64 value = 2 [jstype = JS_STRING];
+}
+
+message balance_object {
+   uint64 value = 1 [jstype = JS_STRING];
+}
+
+message mint_event {
+   bytes to = 1 [(koinos.btype) = ADDRESS];
+   uint64 value = 2 [jstype = JS_STRING];
+}
+
+message burn_event {
+   bytes from = 1 [(koinos.btype) = ADDRESS];
+   uint64 value = 2 [jstype = JS_STRING];
+}
+
+// @description Grant permissions to other account to manage the tokens owned by the user.
+// @read-only false
+// @result empty_message
+message approve_arguments {
+   bytes owner = 1 [(koinos.btype) = ADDRESS];
+   bytes spender = 2 [(koinos.btype) = ADDRESS];
+   uint64 value = 3 [jstype = JS_STRING];
+}
+
+// @description returns allowance
+// @read-only true
+message allowance_arguments {
+   bytes owner = 1 [(koinos.btype) = ADDRESS];
+   bytes spender = 2 [(koinos.btype) = ADDRESS];
+}
+
+message allowance_result {
+   uint64 value = 1 [jstype = JS_STRING];
+}
+
+enum direction {
+   ascending = 0;
+   descending = 1;
+}
+
+// @description returns allowance
+// @read-only true
+message get_allowances_arguments {
+   bytes owner = 1 [(koinos.btype) = ADDRESS];
+   bytes start = 2 [(koinos.btype) = ADDRESS];
+   int32 limit = 3;
+   direction direction = 4;
+}
+
+message get_allowances_result {
+   bytes owner = 1 [(koinos.btype) = ADDRESS];
+   repeated spender_value allowances = 2;   
+}
+
+message spender_value {
+   bytes spender = 1 [(koinos.btype) = ADDRESS];
+   uint64 value = 2 [jstype = JS_STRING];
+}
+
+
+message transfer_event {
+   bytes from = 1 [(koinos.btype) = ADDRESS];
+   bytes to = 2 [(koinos.btype) = ADDRESS];
+   uint64 value = 3 [jstype = JS_STRING];
+}
+
+message approve_event {
+   bytes owner = 1 [(koinos.btype) = ADDRESS];
+   bytes spender = 2 [(koinos.btype) = ADDRESS];
+   uint64 value = 3 [jstype = JS_STRING];
+}

@@ -1,0 +1,6 @@
+build
+*.wat
+*.wasm
+*.map
+node_modules
+koinos-cli.v2.0.0.macos

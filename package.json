@@ -1,0 +1,34 @@
+{
+  "name": "token",
+  "version": "0.1.0",
+  "license": "MIT",
+  "dependencies": {
+
+    "@koinos/sdk-as-cli": "^1.0.2",
+    "@koinosbox/contracts": "2.0.2",
+    "@koinosbox/sdk-as": "^1.1.0-alpha.4",
+    "koinos-precompiler-as": "^1.4.1"
+  },
+  "devDependencies": {
+    "@koinos/sdk-as": "npm:@koinosbox/sdk-as@1.1.0-alpha.4",
+    "@as-covers/core": "^0.4.2",
+    "@as-pect/cli": "^8.0.1",
+    "@koinos/abi-proto-gen": "github:koinos/koinos-abi-proto-gen#19cf0a276ed7c8a35b26b448e9ee149e697c2500",
+    "@koinos/as-proto-gen": "^1.0.3",
+    "@koinos/mock-vm": "^1.0.0",
+    "@roamin/protoc": "^2.4.0",
+    "@typescript-eslint/eslint-plugin": "^5.10.0",
+    "@typescript-eslint/parser": "^5.10.0",
+    "assemblyscript": "^0.27.1",
+    "eslint": "^8.7.0",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.5.5",
+    "yaml": "^2.0.0-11"
+  },
+  "scripts": {
+    "lint": "eslint --max-warnings 0 --ext ts \"*/assembly/**/*.ts\"",
+    "build:debug": "koinos-sdk-as-cli build-all debug 0 token.proto koinos/contracts/token/token.proto",
+    "build:release": "koinos-sdk-as-cli build-all release 0 token.proto koinos/contracts/token/token.proto",
+    "test": "koinos-sdk-as-cli run-tests"
+  }
+}
